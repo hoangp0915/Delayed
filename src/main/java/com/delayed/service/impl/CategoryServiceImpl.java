@@ -18,4 +18,9 @@ public class CategoryServiceImpl implements CategoryService{
 		return categoryDao.findAll();
 	}
 
+	@Override
+	public CategoryModel findOneById(Integer id) {
+		return categoryDao.findOne(id);
+	}
+
 }

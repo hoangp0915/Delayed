@@ -362,3 +362,26 @@ transform: scale(1.1);
 .fixed{
     clear: both;
 }
+
+/* Not Found */
+.wrap {
+    margin: 0 auto;
+    width: 96%;
+}
+.logonot {
+    text-align: center;
+    margin-top: 30px;
+}
+.logonot img {
+    margin-top: 0px;
+    max-width: 100%;
+}
+.page {
+    text-align: center;
+    font-family: "Century Gothic";
+}
+.page h2 {
+    font-size: 3em;
+    color: rgb(99, 44, 37);
+    font-weight: bold;
+}

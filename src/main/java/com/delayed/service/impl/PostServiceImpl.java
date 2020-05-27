@@ -1,12 +1,16 @@
 package com.delayed.service.impl;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import com.delayed.dao.PostDao;
+import com.delayed.model.CategoryModel;
+import com.delayed.model.PostData;
 import com.delayed.model.PostModel;
+import com.delayed.service.CategoryService;
 import com.delayed.service.PostService;
 
 public class PostServiceImpl implements PostService {
@@ -14,6 +18,8 @@ public class PostServiceImpl implements PostService {
 	@Inject
 	private PostDao postDao;
 
+	@Inject
+	private CategoryService categoryService;
 	/**
 	 * Insert record in to database {@inheritDoc}
 	 * 
@@ -63,8 +69,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	/**
-	 * Find record by Id
-	 * {@inheritDoc}
+	 * Find record by Id {@inheritDoc}
+	 * 
 	 * @see com.delayed.service.PostService#findById(java.lang.Integer)
 	 */
 	@Override
@@ -81,7 +87,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<PostModel> listRecord(Integer page, Integer size) {
-		if(page != 0) {
+		if (page != 0) {
 			page = page + size;
 		}
 		List<PostModel> list = postDao.listRecord(page, size);
@@ -92,6 +98,34 @@ public class PostServiceImpl implements PostService {
 	public List<PostModel> listRecordMostViewed() {
 		List<PostModel> list = postDao.findPostMostViewed();
 		return list;
+	}
+
+	@Override
+	public List<PostModel> listRecordByCategory(Integer cate, Integer page, Integer size) {
+		if (page != 0) {
+			page = page + size;
+		}
+		List<PostModel> list = postDao.listRecordByCategory(cate, page, size);
+		return list;
+	}
+
+	@Override
+	public List<PostData> listPostData(List<PostModel> posts) {
+		List<PostData> listPosts = new ArrayList<PostData>();
+		for(PostModel post: posts) {
+			PostData postData = new PostData();
+			postData.setId(post.getId());
+			postData.setTitle(post.getTitle());
+			postData.setDescription(post.getDescription());
+			postData.setContent(post.getContent());
+			postData.setCreatedBy(post.getCreatedBy());
+			postData.setCreated(post.getCreated());
+			postData.setThumbnail(post.getThumbnail());
+			CategoryModel cate = categoryService.findOneById(post.getCategoryId());
+			postData.setCategory(cate);
+			listPosts.add(postData);
+		}
+		return listPosts;
 	}
 
 }

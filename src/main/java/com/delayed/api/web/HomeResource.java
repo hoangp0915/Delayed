@@ -2,9 +2,7 @@ package com.delayed.api.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
@@ -14,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.delayed.model.CategoryModel;
+import com.delayed.model.PostData;
 import com.delayed.model.PostModel;
 import com.delayed.service.CategoryService;
 import com.delayed.service.PostService;
@@ -44,10 +42,11 @@ public class HomeResource extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String page = request.getParameter("page");
 		String size = request.getParameter("size");
-//		List<PostModel> posts = postService.findAll();
 		List<PostModel> posts= postService.listRecord(Integer.parseInt(page) - 1,
 				Integer.parseInt(size));
-		out.print(this.gson.toJson(posts));
+		List<PostData> postDataList = postService.listPostData(posts);
+		
+		out.print(this.gson.toJson(postDataList));
 		out.flush();
 	}
 

@@ -2,6 +2,7 @@ package com.delayed.service;
 
 import java.util.List;
 
+import com.delayed.model.PostData;
 import com.delayed.model.PostModel;
 
 public interface PostService {
@@ -35,28 +36,35 @@ public interface PostService {
 	 * @param ids
 	 */
 	void deleteByIds(String ids);
-	
+
 	/**
 	 * Find post by id
+	 * 
 	 * @param id
 	 * @return
 	 */
 	PostModel findById(Integer id);
-	
+
 	/**
-	 * find Record width Limit 
+	 * find Record width Limit
+	 * 
 	 * @param limit
 	 * @return
 	 */
-	List<PostModel> findRecordLimit(Integer limit); 
-	
+	List<PostModel> findRecordLimit(Integer limit);
+
 	/**
 	 * list record
+	 * 
 	 * @param page
 	 * @param size
 	 * @return
 	 */
-	List<PostModel> listRecord(Integer page, Integer size); 
+	List<PostModel> listRecord(Integer page, Integer size);
+
+	List<PostModel> listRecordByCategory(Integer cate, Integer page, Integer size);
+
+	List<PostModel> listRecordMostViewed();
 	
-	List<PostModel> listRecordMostViewed(); 
-} 
+	List<PostData> listPostData(List<PostModel> posts);
+}

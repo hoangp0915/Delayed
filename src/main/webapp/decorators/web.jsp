@@ -22,6 +22,8 @@
 	rel="stylesheet" type="text/css">
 <script type="text/javascript"
 	src="<c:url value='/assets/vuejs/vue.min.js' />"></script>
+	<script type="text/javascript"
+	src="<c:url value='/assets/vuejs/vue-router.js' />"></script>
 <script type="text/javascript"
 	src="<c:url value='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js' />"></script>
 </head>

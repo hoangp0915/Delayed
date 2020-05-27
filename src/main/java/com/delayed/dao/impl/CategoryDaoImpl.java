@@ -19,8 +19,9 @@ public class CategoryDaoImpl extends ConnectionImpl<CategoryModel> implements Ca
 
 	@Override
 	public CategoryModel findOne(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM category WHERE id = ?";
+		List<CategoryModel> news = query(sql, new CategoryMapper(), id);
+		return news.isEmpty() ? null : news.get(0);
 	}
 
 	@Override

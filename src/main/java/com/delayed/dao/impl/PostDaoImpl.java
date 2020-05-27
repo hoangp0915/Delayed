@@ -91,4 +91,10 @@ public class PostDaoImpl extends ConnectionImpl<PostModel> implements PostDao {
 		return query(sql, new PostMapper());
 	}
 
+	@Override
+	public List<PostModel> listRecordByCategory(Integer cate, Integer page, Integer size) {
+		String sql = "SELECT * FROM post WHERE category_id = " + cate + " LIMIT " + page + "," + size;
+		return query(sql, new PostMapper());
+	}
+
 }

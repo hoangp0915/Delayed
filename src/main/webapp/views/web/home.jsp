@@ -112,7 +112,7 @@ pageEncoding="UTF-8"%> <%@include file="/common/taglib.jsp"%>
               v-bind:title="post.title"
             />
           </a>
-          <p>Thủ thuật</p>
+          <p>{{post.category}}</p>
         </div>
         <div class="bv">
           <div class="bv-title">
@@ -182,6 +182,7 @@ pageEncoding="UTF-8"%> <%@include file="/common/taglib.jsp"%>
             this.pageable.size
         )
         .then((response) => {
+        	console.log(response);
           this.data = response.data.map((data) => {
             return {
               categoryId: data.categoryId,
@@ -192,6 +193,7 @@ pageEncoding="UTF-8"%> <%@include file="/common/taglib.jsp"%>
               id: data.id,
               thumbnail: data.thumbnail,
               title: data.title,
+              category: data.category.name,
               url: "${pageContext.request.contextPath}/post?id=" + data.id,
             };
           });

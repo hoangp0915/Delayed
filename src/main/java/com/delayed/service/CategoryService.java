@@ -7,4 +7,5 @@ import com.delayed.model.CategoryModel;
 public interface CategoryService {
 	
 	List<CategoryModel> findAll();
+	CategoryModel findOneById(Integer id);
 }
