@@ -13,7 +13,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="<c:url value='/assets/web/style/style.css' />">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="<c:url value='/assets/web/style/posts.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/assets/web/style/common.css' />">

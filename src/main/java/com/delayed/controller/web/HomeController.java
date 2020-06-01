@@ -23,10 +23,17 @@ public class HomeController extends HttpServlet {
 	private PostService postService;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("views/web/home.jsp");
-		List<PostModel> views = postService.findRecordLimit(4);
-		request.setAttribute("views", views);
-		rd.forward(request, response);
+		String action = request.getParameter("action");
+		System.out.println(action);
+		if (action != null && action.equals("logout")) {
+			request.getSession().removeAttribute("USERMODEL");
+			response.sendRedirect(request.getContextPath()+"/home");
+		}else {
+			RequestDispatcher rd = request.getRequestDispatcher("views/web/home.jsp");
+			List<PostModel> views = postService.findRecordLimit(4);
+			request.setAttribute("views", views);
+			rd.forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {

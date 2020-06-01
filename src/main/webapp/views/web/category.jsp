@@ -5,7 +5,7 @@
 	<div class="mainx">
 		<div class="box">
 			<div class="box-title">
-				<i class="fa fa-gamepad" aria-hidden="true"> ${title}</i>
+				<i class="fa fa-gamepad" aria-hidden="true"> ${category.name}</i>
 			</div>
 			<div class="box-post" v-for="post in data">
 				<div class="img">
@@ -35,7 +35,7 @@
 				<a v-bind:href="post.url">Xem chi tiết »</a>
 			</div>
 
-			<div class="phantrang" v-if="!hidden">
+			<div class="phantrang">
 				<button v-if="!loading" class="d-flex d-align-items cursor-pointer"
 					v-on:click="getPost">
 					<i class="fa fa-arrow-circle-o-down mr-2 icon" aria-hidden="true"></i>
@@ -78,7 +78,8 @@
 	            this.pageable.size
 	        )
 	        .then((response) => {
-	        	if(response && response.length){
+	        	console.log(response);
+	        	if(response && response.data.length){
 	        		this.data = response.data.map((data) => {
 	    	            return {
 	    	              categoryId: data.categoryId,
@@ -102,8 +103,40 @@
 	        .finally(() => (this.loading = false));
 		},
 		methods: {
-			getData: function(){
-				console.log(this.data);
+			getPost: function () {
+		        this.loading = true;
+		        this.pageable.page++;
+		        axios
+		          .get(
+		            "${pageContext.request.contextPath}/api/category?cat=${param.cat}&page=" +
+		              this.pageable.page +
+		              "&size=" +
+		              this.pageable.size
+		          )
+		          .then((response) => {
+		            if (response && response.length) {
+		              var result = response.data.map((data) => {
+		                return {
+		                  categoryId: data.categoryId,
+		                  content: data.content,
+		                  created: data.created,
+		                  createdBy: data.createdBy,
+		                  description: data.description,
+		                  id: data.id,
+		                  thumbnail: data.thumbnail,
+		                  title: data.title,
+		                  url: "${pageContext.request.contextPath}/post?id=" + data.id,
+		                };
+		              });
+		              this.data.push(...result);
+		            } else {
+		              this.hidden = true;
+		            }
+		          })
+		          .catch((error) => {
+		            console.log(error);
+		          })
+		          .finally(() => (this.loading = false));
 			}
 		}
 		

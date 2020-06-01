@@ -88,8 +88,9 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public List<PostModel> listRecord(Integer page, Integer size) {
 		if (page != 0) {
-			page = page + size;
+			page = page*size;
 		}
+		System.out.println(page);
 		List<PostModel> list = postDao.listRecord(page, size);
 		return list;
 	}

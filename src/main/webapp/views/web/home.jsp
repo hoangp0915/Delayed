@@ -135,7 +135,7 @@ pageEncoding="UTF-8"%> <%@include file="/common/taglib.jsp"%>
         </div>
         <a v-bind:href="post.url">Xem chi tiết »</a>
       </div>
-      <div class="phantrang" v-if="!hidden">
+      <div class="phantrang">
         <button
           v-if="!loading"
           class="d-flex d-align-items cursor-pointer"
@@ -215,7 +215,7 @@ pageEncoding="UTF-8"%> <%@include file="/common/taglib.jsp"%>
               this.pageable.size
           )
           .then((response) => {
-            if (response && response.length) {
+            if (response && response.data.length) {
               var result = response.data.map((data) => {
                 return {
                   categoryId: data.categoryId,
@@ -226,10 +226,13 @@ pageEncoding="UTF-8"%> <%@include file="/common/taglib.jsp"%>
                   id: data.id,
                   thumbnail: data.thumbnail,
                   title: data.title,
+                  category: data.category.name,
                   url: "${pageContext.request.contextPath}/post?id=" + data.id,
                 };
               });
-              this.data.push(...result);
+              console.log("result: ",result);
+              this.data = [...this.data, ...result];
+              console.log(this.data);
             } else {
               this.hidden = true;
             }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
 <!-- Navbar -->
 <div id="header">
 	<div class="dex"></div>
@@ -25,22 +26,25 @@
 				<li><a href="">Images</a></li>
 			</ul>
 			<ul class="menu right ml-2">
-				<!-- <li class="mr-0">
-                        <a class="bt-2-w" href="">Đăng nhập</a>
-                    </li> -->
-				<li class="mr-0">
-					<div>
-						<a class="bt-2-w d-flex d-align-items"> <img
-							src="https://via.placeholder.com/150" class="mr-1" alt="">
-							<div>Mai Văn Hoàng</div>
-						</a>
-					</div>
-					<ul class="sub-menu">
-						<li><a href="">Thông tin chi tiết</a></li>
-						<li><a href="">ADMIN</a></li>
-						<li><a href="">Đăng xuất</a></li>
-					</ul>
-				</li>
+				<c:if test="${empty USERMODEL}">
+					<li class="mr-0"><a class="bt-2-w"
+						href="<c:url value='login' />">Đăng nhập</a></li>
+				</c:if>
+				<c:if test="${not empty USERMODEL}">
+					<li class="mr-0">
+						<div>
+							<a class="bt-2-w d-flex d-align-items"> <img
+								src="https://via.placeholder.com/150" class="mr-1" alt="">
+								<div>${USERMODEL.fullName}</div>
+							</a>
+						</div>
+						<ul class="sub-menu">
+							<li><a href="">Thông tin chi tiết</a></li>
+							<li><a href="">ADMIN</a></li>
+							<li><a href="<c:url value='home?action=logout' />">Đăng xuất</a></li>
+						</ul>
+					</li>
+				</c:if>
 			</ul>
 			<div class="dropdown">
 				<button onclick="onclickbtn();" class="cursor-pointer">
