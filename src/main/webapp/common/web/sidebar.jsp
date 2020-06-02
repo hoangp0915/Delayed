@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.delayed.model.PostModel" %>
+<%@ page import="com.delayed.service.PostService" %>
+<%@ page import="com.delayed.service.impl.PostServiceImpl" %>
 <!-- Sidebar -->
 <div class="sideBar">
-
-
 	<div class="box">
 		<div class="box-title">
 			<i class="fa fa-bar-chart" aria-hidden="true"></i> Xem nhiều nhất

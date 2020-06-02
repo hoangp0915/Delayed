@@ -35,13 +35,14 @@
 						<div>
 							<a class="bt-2-w d-flex d-align-items"> <img
 								src="https://via.placeholder.com/150" class="mr-1" alt="">
-								<div>${USERMODEL.fullName}</div>
+								<div>${USERMODEL.fullName == null ? USERMODEL.username : USERMODEL.fullName}</div>
 							</a>
 						</div>
 						<ul class="sub-menu">
 							<li><a href="">Thông tin chi tiết</a></li>
 							<li><a href="">ADMIN</a></li>
-							<li><a href="<c:url value='home?action=logout' />">Đăng xuất</a></li>
+							<li><a href="<c:url value='home?action=logout' />">Đăng
+									xuất</a></li>
 						</ul>
 					</li>
 				</c:if>
