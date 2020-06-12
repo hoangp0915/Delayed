@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.delayed.model.CategoryModel;
 import com.delayed.model.PostData;
 import com.delayed.model.PostModel;
+import com.delayed.service.CategoryService;
 import com.delayed.service.PostService;
 import com.google.gson.Gson;
 
@@ -32,17 +34,27 @@ public class CategoryResource extends HttpServlet {
 
 	@Inject
 	private PostService postService;
+	
+	@Inject
+	private CategoryService categoryService;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		String cat = request.getParameter("cat");
-		String page = request.getParameter("page");
-		String size = request.getParameter("size");
-		List<PostModel> posts = postService.listRecordByCategory(Integer.parseInt(cat), Integer.parseInt(page) - 1,
-				Integer.parseInt(size));
-		List<PostData> postDataList = postService.listPostData(posts);
-		out.print(this.gson.toJson(postDataList));
-		out.flush();
+		String action = request.getParameter("action");
+		if(action != null && action.equals("all")) {
+			List<CategoryModel> categories = categoryService.findAll();
+			out.print(this.gson.toJson(categories));
+			out.flush();
+		}else {
+			String cat = request.getParameter("cat");
+			String page = request.getParameter("page");
+			String size = request.getParameter("size");
+			List<PostModel> posts = postService.listRecordByCategory(Integer.parseInt(cat), Integer.parseInt(page) - 1,
+					Integer.parseInt(size));
+			List<PostData> postDataList = postService.listPostData(posts);
+			out.print(this.gson.toJson(postDataList));
+			out.flush();
+		}
 	}
 }

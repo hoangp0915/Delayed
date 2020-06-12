@@ -67,4 +67,6 @@ public interface PostService {
 	List<PostModel> listRecordMostViewed();
 	
 	List<PostData> listPostData(List<PostModel> posts);
+	
+	List<PostModel> searchByKey(String searchKey, Integer page, Integer size);
 }

@@ -97,4 +97,10 @@ public class PostDaoImpl extends ConnectionImpl<PostModel> implements PostDao {
 		return query(sql, new PostMapper());
 	}
 
+	@Override
+	public List<PostModel> searchByKey(String searchKey, Integer page, Integer size) {
+		String sql = "SELECT * FROM post WHERE title LIKE '%" + searchKey + "%' LIMIT " + page + "," + size;
+		return query(sql, new PostMapper());
+	}
+
 }

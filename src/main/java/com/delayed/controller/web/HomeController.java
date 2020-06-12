@@ -30,7 +30,7 @@ public class HomeController extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/home");
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher("views/web/home.jsp");
-			List<PostModel> views = postService.findRecordLimit(4);
+			List<PostModel> views = postService.findRecordLimit(5);
 			request.setAttribute("views", views);
 			rd.forward(request, response);
 		}

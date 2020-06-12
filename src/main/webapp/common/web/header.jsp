@@ -13,17 +13,8 @@
 		<div class="nav">
 			<ul class="menu left">
 				<li class="home"><a href="<c:url value='home' />">Home</a></li>
-				<li><a href="">Game</a>
-					<ul class="sub-menu">
-						<li><a href="">PC</a></li>
-						<li><a href="">Android</a></li>
-					</ul></li>
-				<li><a href="">Thủ thuật</a>
-					<ul class="sub-menu">
-						<li><a href="">PC</a></li>
-						<li><a href="">Android</a></li>
-					</ul></li>
-				<li><a href="">Images</a></li>
+				<li v-for="category in data" v-if="category.parent === 0" v-html="getMenu(category)">
+				</li>
 			</ul>
 			<ul class="menu right ml-2">
 				<c:if test="${empty USERMODEL}">
@@ -86,5 +77,46 @@
 
 		}
 	}
+	new Vue({
+		el: "#header",
+		data:{
+			data: [],
+			bindHtml: ''
+		},
+		mounted: function (){
+			axios.get("${pageContext.request.contextPath}/api/category?action=all").then((response) => {
+				this.data = response.data.map((data) => {
+					return {
+						name: data.name,
+						parent: data.parent,
+						id: data.id,
+						url: "${pageContext.request.contextPath}/category?cat=" + data.id
+					}
+				});
+			});
+			
+		},
+		methods:{
+			getMenu: function(category){
+				const string = "<a href='" + category.url +"'>"+ category.name + "</a>";
+				const child = this.data.find(item => item.parent === category.id);
+				const ul = "<ul class='sub-menu'>";
+				const li = [];
+				if(child !== undefined){
+					this.data.forEach(element => {
+						if(element.parent === category.id){
+							li.push("<li><a href='" + element.url +"'>"+ element.name + "</a></li>")
+						}
+					});
+				}
+				const submenu = ul.concat(...li, "</ul>");	
+				console.log(string.concat(submenu));	
+				return string.concat(submenu);
+			}
+		}
+	});
+	
+						// <li><a href="">PC</a></li>
+						// <li><a href="">Android</a></li>
 </script>
 <!-- End Navbar -->

@@ -40,14 +40,20 @@ public class HomeResource extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		String page = request.getParameter("page");
-		String size = request.getParameter("size");
-		List<PostModel> posts= postService.listRecord(Integer.parseInt(page) - 1,
-				Integer.parseInt(size));
-		List<PostData> postDataList = postService.listPostData(posts);
-		
-		out.print(this.gson.toJson(postDataList));
-		out.flush();
+		String action = request.getParameter("action");
+		if(action != null && action.equals("sidebar")) {
+			List<PostModel> sidebar = postService.listRecordMostViewed();
+			out.print(this.gson.toJson(sidebar));
+			out.flush();
+		}else {
+			String page = request.getParameter("page");
+			String size = request.getParameter("size");
+			List<PostModel> posts= postService.listRecord(Integer.parseInt(page) - 1,
+					Integer.parseInt(size));
+			List<PostData> postDataList = postService.listPostData(posts);
+			out.print(this.gson.toJson(postDataList));
+			out.flush();
+		}
 	}
 
 	/**

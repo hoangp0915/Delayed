@@ -56,4 +56,6 @@ public interface PostDao extends ConnectionDatabase<PostModel> {
 	List<PostModel> findPostMostViewed();
 
 	List<PostModel> listRecordByCategory(Integer cate, Integer page, Integer size);
+	
+	List<PostModel> searchByKey(String searchKey, Integer page, Integer size);
 }

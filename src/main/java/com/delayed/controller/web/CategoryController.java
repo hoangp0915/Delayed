@@ -13,20 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import com.delayed.model.CategoryModel;
 import com.delayed.service.CategoryService;
 
-@WebServlet(urlPatterns = { "/category" })
+@WebServlet(urlPatterns = { "/category", "/search" })
 public class CategoryController extends HttpServlet {
 
 	private static final long serialVersionUID = -9073530184347982538L;
 
 	@Inject
 	private CategoryService categoryService;
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher rd;
-		if (request.getParameter("cat") != null && !request.getParameter("cat").isEmpty()) {
+		if ((request.getParameter("cat") != null && !request.getParameter("cat").isEmpty())) {
 			CategoryModel cate = categoryService.findOneById(Integer.parseInt(request.getParameter("cat")));
-			request.setAttribute("category", cate);
+			request.setAttribute("category", cate.getName());
+			rd = request.getRequestDispatcher("views/web/category.jsp");
+		} else if ((request.getParameter("searchKey") != null && !request.getParameter("searchKey").isEmpty())) {
+			request.setAttribute("category", "Tìm kiếm: " + request.getParameter("searchKey"));
 			rd = request.getRequestDispatcher("views/web/category.jsp");
 		} else {
 			rd = request.getRequestDispatcher("views/web/404notfound.jsp");

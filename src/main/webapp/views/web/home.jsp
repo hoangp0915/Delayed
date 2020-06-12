@@ -4,99 +4,45 @@ pageEncoding="UTF-8"%> <%@include file="/common/taglib.jsp"%>
   <div class="mainx">
     <div class="box">
       <div class="box-big">
-        <div class="big">
-          <a href="">
-            <img
-              src="https://gamek.mediacdn.vn/zoom/399_262/133514250583805952/2020/5/16/dtcl-15896404965281210844039.jpg"
-              alt=""
-            />
-          </a>
-          <div class="bv">
-            <span>
-              <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
-              15 phút trước
-            </span>
-            <br />
-            <a href="">Top game online tuyệt hay cho ngày nghỉ cuối tuần nay</a>
-            <p>
-              Grand Theft Auto IV (hay GTA 4) là phần thứ 4 của series GTA nhập
-              vai thế giới mở nổi tiếng, game được mô tả là...
-            </p>
-          </div>
-        </div>
-        <div class="big">
-          <a href="">
-            <img
-              src="https://gamek.mediacdn.vn/zoom/278_262/133514250583805952/2020/5/16/photo-1-15896316878072119420394.jpg"
-              alt=""
-            />
-          </a>
-          <div class="bv">
-            <span>
-              <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
-              15 phút trước
-            </span>
-            <br />
-            <a href=""
-              >Top game online tuyệt hay cho ngày nghỉ cuối tuần nay nay ne ne
-              ne ne enn en en thứ 4 của series GTA nhập vai thế g</a
-            >
-            <p>
-              Grand Theft Auto IV (hay GTA 4) là phần thứ 4 của series GTA nhập
-              vai thế giới mở nổi tiếng, game được mô tả là...
-            </p>
-          </div>
-        </div>
+        <c:forEach var="post" items="${views}" varStatus="loop">
+          <c:if test="${loop.index < 2}">
+            <div class="big">
+              <a href="<c:url value='post?id=${post.id}'/>">
+                <img src="${post.thumbnail}" alt="" />
+              </a>
+              <div class="bv">
+                <span>
+                  <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
+                  ${post.created}
+                </span>
+                <br />
+                <a href="<c:url value='post?id=${post.id}'/>">${post.title}</a>
+                <p>
+                  ${post.description}
+                </p>
+              </div>
+            </div>
+          </c:if>
+        </c:forEach>
       </div>
       <div class="box-small">
-        <div class="small">
-          <a href="">
-            <img
-              src="https://gamek.mediacdn.vn/zoom/399_163/133514250583805952/2020/5/16/46-468129mafia-graves-by-aynoe-hd-wallpaper-fan-art-15896189733892115037536.jpg"
-              alt=""
-            />
-          </a>
-          <div class="bv">
-            <span>
-              <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
-              15 phút trước
-            </span>
-            <br />
-            <a href="">Top game online tuyệt hay cho ngày nghỉ cuối tuần nay</a>
-          </div>
-        </div>
-        <div class="small">
-          <a href="">
-            <img
-              src="https://gamek.mediacdn.vn/zoom/192_129/133514250583805952/2020/5/16/creepy-pokemon-creepy-wallpapers-1907035309-15896479710702013196583.jpg"
-              alt=""
-            />
-          </a>
-          <div class="bv">
-            <span>
-              <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
-              15 phút trước
-            </span>
-            <br />
-            <a href="">Top game online tuyệt hay cho ngày nghỉ cuối tuần nay</a>
-          </div>
-        </div>
-        <div class="small">
-          <a href="">
-            <img
-              src="https://gamek.mediacdn.vn/zoom/192_129/133514250583805952/2020/5/16/photo-1-15896444843111753436229.jpg"
-              alt=""
-            />
-          </a>
-          <div class="bv">
-            <span>
-              <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
-              15 phút trước
-            </span>
-            <br />
-            <a href="">Top game online tuyệt hay cho ngày nghỉ cuối tuần nay</a>
-          </div>
-        </div>
+        <c:forEach var="post" items="${views}" varStatus="loop">
+          <c:if test="${loop.index >= 2}">
+            <div class="small">
+              <a href="<c:url value='post?id=${post.id}'/>">
+                <img src="${post.thumbnail}" alt="" />
+              </a>
+              <div class="bv">
+                <span>
+                  <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
+                  ${post.created}
+                </span>
+                <br />
+                <a href="<c:url value='post?id=${post.id}'/>">${post.title}</a>
+              </div>
+            </div>
+          </c:if>
+        </c:forEach>
       </div>
     </div>
     <div class="box" id="section-components">
@@ -112,7 +58,7 @@ pageEncoding="UTF-8"%> <%@include file="/common/taglib.jsp"%>
               v-bind:title="post.title"
             />
           </a>
-          <p>{{post.category}}</p>
+          <p>{{ post.category }}</p>
         </div>
         <div class="bv">
           <div class="bv-title">
@@ -182,7 +128,7 @@ pageEncoding="UTF-8"%> <%@include file="/common/taglib.jsp"%>
             this.pageable.size
         )
         .then((response) => {
-        	console.log(response);
+          console.log(response);
           this.data = response.data.map((data) => {
             return {
               categoryId: data.categoryId,
@@ -230,7 +176,7 @@ pageEncoding="UTF-8"%> <%@include file="/common/taglib.jsp"%>
                   url: "${pageContext.request.contextPath}/post?id=" + data.id,
                 };
               });
-              console.log("result: ",result);
+              console.log("result: ", result);
               this.data = [...this.data, ...result];
               console.log(this.data);
             } else {

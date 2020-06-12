@@ -205,6 +205,19 @@ a{text-decoration: none;color: black}
     position: relative;
     margin-bottom: 5px;
 }
+#wrapper .mainx .box .box-post-notfound{
+    width: 95%;
+    margin: auto;
+    height: 60px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px dotted #eee;
+    position: relative;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #wrapper .mainx .box .box-post .img{
     width: 200px;
     height: 150px;

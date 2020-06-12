@@ -20,6 +20,7 @@ public class PostServiceImpl implements PostService {
 
 	@Inject
 	private CategoryService categoryService;
+
 	/**
 	 * Insert record in to database {@inheritDoc}
 	 * 
@@ -88,7 +89,7 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public List<PostModel> listRecord(Integer page, Integer size) {
 		if (page != 0) {
-			page = page*size;
+			page = page * size;
 		}
 		System.out.println(page);
 		List<PostModel> list = postDao.listRecord(page, size);
@@ -113,7 +114,7 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public List<PostData> listPostData(List<PostModel> posts) {
 		List<PostData> listPosts = new ArrayList<PostData>();
-		for(PostModel post: posts) {
+		for (PostModel post : posts) {
 			PostData postData = new PostData();
 			postData.setId(post.getId());
 			postData.setTitle(post.getTitle());
@@ -127,6 +128,14 @@ public class PostServiceImpl implements PostService {
 			listPosts.add(postData);
 		}
 		return listPosts;
+	}
+
+	@Override
+	public List<PostModel> searchByKey(String searchKey, Integer page, Integer size) {
+		if (page != 0) {
+			page = page + size;
+		}
+		return postDao.searchByKey(searchKey, page, size);
 	}
 
 }
