@@ -3,7 +3,9 @@ package com.delayed.dao.impl;
 import java.util.List;
 
 import com.delayed.dao.PostDao;
+import com.delayed.mapper.FavoriteArticlesMapper;
 import com.delayed.mapper.PostMapper;
+import com.delayed.model.FavoriteArticles;
 import com.delayed.model.PostModel;
 
 public class PostDaoImpl extends ConnectionImpl<PostModel> implements PostDao {
@@ -101,6 +103,31 @@ public class PostDaoImpl extends ConnectionImpl<PostModel> implements PostDao {
 	public List<PostModel> searchByKey(String searchKey, Integer page, Integer size) {
 		String sql = "SELECT * FROM post WHERE title LIKE '%" + searchKey + "%' LIMIT " + page + "," + size;
 		return query(sql, new PostMapper());
+	}
+
+	@Override
+	public List<FavoriteArticles> listFavorite(Integer id) {
+		String sql = "SELECT * FROM favoritearticles WHERE user_id=" + id;
+		return query(sql, new FavoriteArticlesMapper());
+	}
+
+	@Override
+	public Integer insertFavoriteArticles(Integer userId, Integer postId) {
+		StringBuilder sql = new StringBuilder("INSERT INTO favoritearticles (user_id, post_id)");
+		sql.append(" VALUES(?, ?)");
+		return insert(sql.toString(), userId, postId);
+	}
+
+	@Override
+	public Integer getFavoriteArticles(Integer userId, Integer postId) {
+		String sql = "SELECT COUNT(post_id) FROM favoritearticles WHERE user_id=? AND post_id=?";
+		return count(sql, userId, postId);
+	}
+
+	@Override
+	public void deleteFavoriteArticle(Integer userId, Integer postId) {
+		String sql = "DELETE FROM favoritearticles WHERE user_id=? AND post_id=?";
+		update(sql, userId, postId);
 	}
 
 }

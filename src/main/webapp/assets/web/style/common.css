@@ -29,6 +29,12 @@
 .d-align-items{
     align-items: center !important;
 }
+.d-justify-content{
+    justify-content: center !important;
+}
+.flex-grow-1{
+    flex-grow: 1 !important;
+}
 .icon{
     font-size: 18px;
     cursor: pointer;
@@ -62,4 +68,11 @@
     height: 10px;
     border-width: 0.2em;
   }
+
+.w100vw{
+    width: 100vw !important;
+}
+.h100vh{
+    height: 100vh !important;
+}
 /* ./common */

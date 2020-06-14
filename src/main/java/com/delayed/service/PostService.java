@@ -2,8 +2,10 @@ package com.delayed.service;
 
 import java.util.List;
 
+import com.delayed.model.FavoriteArticles;
 import com.delayed.model.PostData;
 import com.delayed.model.PostModel;
+import com.delayed.model.UserModel;
 
 public interface PostService {
 
@@ -69,4 +71,12 @@ public interface PostService {
 	List<PostData> listPostData(List<PostModel> posts);
 	
 	List<PostModel> searchByKey(String searchKey, Integer page, Integer size);
+	
+	List<PostModel> listFavorite(Integer id);
+	
+	Integer insertFavoriteArticles(Integer userId, Integer postId);
+	
+	Integer getFavoriteArticles(Integer userId, Integer postId);
+	
+	void deleteFavoriteArticle(Integer userId, Integer postId);
 }

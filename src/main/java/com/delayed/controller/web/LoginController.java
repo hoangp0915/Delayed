@@ -27,8 +27,6 @@ public class LoginController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println(request.getParameter("username"));
-		System.out.println(request.getParameter("password"));
 		UserModel userModel = userService.login(request.getParameter("username"), request.getParameter("password"));
 		if(userModel != null) {
 			request.getSession().setAttribute("USERMODEL", userModel);

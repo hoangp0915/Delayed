@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.delayed.model.PostData;
 import com.delayed.model.PostModel;
+import com.delayed.model.UserModel;
 import com.delayed.service.CategoryService;
 import com.delayed.service.PostService;
 import com.google.gson.Gson;
@@ -41,15 +42,25 @@ public class HomeResource extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		String action = request.getParameter("action");
-		if(action != null && action.equals("sidebar")) {
+		if (action != null && action.equals("sidebar")) {
 			List<PostModel> sidebar = postService.listRecordMostViewed();
 			out.print(this.gson.toJson(sidebar));
 			out.flush();
-		}else {
+		} else if (action != null && action.equals("favorite")) {
+			UserModel user = (UserModel) request.getSession().getAttribute("USERMODEL");
+			if (request.getSession().getAttribute("USERMODEL") != null) {
+				List<PostModel> favorite = postService.listFavorite(user.getId());
+				out.print(this.gson.toJson(favorite));
+				out.flush();
+			} else {
+				out.print(this.gson.toJson(null));
+				out.flush();
+			}
+
+		} else {
 			String page = request.getParameter("page");
 			String size = request.getParameter("size");
-			List<PostModel> posts= postService.listRecord(Integer.parseInt(page) - 1,
-					Integer.parseInt(size));
+			List<PostModel> posts = postService.listRecord(Integer.parseInt(page) - 1, Integer.parseInt(size));
 			List<PostData> postDataList = postService.listPostData(posts);
 			out.print(this.gson.toJson(postDataList));
 			out.flush();

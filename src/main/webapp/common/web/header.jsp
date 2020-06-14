@@ -5,7 +5,7 @@
 <div id="header">
 	<div class="dex"></div>
 	<div class="logo">
-		<a href=""> <img
+		<a href="<c:url value='/home' />"> <img
 			src="<c:url value='/assets/web/images/logo.png' />" alt="">
 		</a>
 	</div>
@@ -43,9 +43,10 @@
 					<i class="fa fa-search"></i>
 				</button>
 				<div class="search" id="search-modal">
-					<form action="#">
+				
+					<form action="<c:url value='/search' />">
 						<div class="form-group">
-							<input type="search" placeholder="Nhập nội dung...">
+							<input type="search" name="searchKey" placeholder="Nhập nội dung...">
 							<button type="submit" class="cursor-pointer">
 								<i class='fa fa-search'></i>
 							</button>
@@ -110,7 +111,6 @@
 					});
 				}
 				const submenu = ul.concat(...li, "</ul>");	
-				console.log(string.concat(submenu));	
 				return string.concat(submenu);
 			}
 		}

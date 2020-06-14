@@ -2,6 +2,7 @@ package com.delayed.dao;
 
 import java.util.List;
 
+import com.delayed.model.FavoriteArticles;
 import com.delayed.model.PostModel;
 
 public interface PostDao extends ConnectionDatabase<PostModel> {
@@ -58,4 +59,12 @@ public interface PostDao extends ConnectionDatabase<PostModel> {
 	List<PostModel> listRecordByCategory(Integer cate, Integer page, Integer size);
 	
 	List<PostModel> searchByKey(String searchKey, Integer page, Integer size);
+	
+	List<FavoriteArticles> listFavorite(Integer id);
+	
+	Integer insertFavoriteArticles(Integer userId, Integer postId);
+	
+	Integer getFavoriteArticles(Integer userId, Integer postId);
+	
+	void deleteFavoriteArticle(Integer userId, Integer postId);
 }

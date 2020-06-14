@@ -23,8 +23,12 @@
 
 }
 #wrapper .mainx .posts .posts-title .title p{margin: 0;font-size: 29px;font-weight: bold}
-#wrapper .mainx .posts  span{font-size: 13px;margin-left: 25px;}
-#wrapper .mainx .posts .posts-breadcumb{border-bottom: 1px solid #eee;width: 620px; margin: auto;    margin-bottom: 5px;}
+#wrapper .mainx .posts  span{font-size: 13px;margin-left: 15px;}
+#wrapper .mainx .posts  span button{border: 0; background-color: white; cursor: pointer}
+#wrapper .mainx .posts .posts-breadcumb{
+	border-bottom: 1px solid #eee;width: 620px; margin: auto;    margin-bottom: 5px;
+	padding: 10px 0;
+}
 #wrapper .mainx .posts .posts-breadcumb ul{margin: 0;padding-left: 15px;}
 #wrapper .mainx .posts .posts-breadcumb ul li{display: inline-block}
 #wrapper .mainx .posts .posts-breadcumb ul li a{text-decoration: none;
@@ -66,7 +70,7 @@
     color: white;
 }
 /* Bình luận */
-#wrapper .mainx .box .box-comment{width: 96%;margin: auto;height: 100px;}
+#wrapper .mainx .box .box-comment{width: 96%;margin: auto;}
 /* Cùng chuyên mục */
 #wrapper .mainx .box .box-cm{width: 96%;margin: auto;height: 260px;}
 #wrapper .mainx .box .box-cm .cm{width: 32%;float: left;background-color: #eee;height: auto;margin: 5px 4px 5px 4px;}
@@ -82,3 +86,9 @@
     font-size: 18px;
 }
 #wrapper .mainx .box .box-cm .cm:hover a{color: #3589c3}
+.box-body-not-found{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}

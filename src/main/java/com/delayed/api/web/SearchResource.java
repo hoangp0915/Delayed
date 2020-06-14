@@ -19,6 +19,9 @@ import com.google.gson.Gson;
 
 @WebServlet("/api/search")
 public class SearchResource extends HttpServlet {
+
+	private static final long serialVersionUID = 2009423909757788927L;
+
 	private Gson gson = new Gson();
 
 	@Inject

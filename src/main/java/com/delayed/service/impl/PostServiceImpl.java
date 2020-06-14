@@ -8,8 +8,10 @@ import javax.inject.Inject;
 
 import com.delayed.dao.PostDao;
 import com.delayed.model.CategoryModel;
+import com.delayed.model.FavoriteArticles;
 import com.delayed.model.PostData;
 import com.delayed.model.PostModel;
+import com.delayed.model.UserModel;
 import com.delayed.service.CategoryService;
 import com.delayed.service.PostService;
 
@@ -136,6 +138,31 @@ public class PostServiceImpl implements PostService {
 			page = page + size;
 		}
 		return postDao.searchByKey(searchKey, page, size);
+	}
+
+	@Override
+	public List<PostModel> listFavorite(Integer userId) {
+		List<FavoriteArticles> favoriteArticles = postDao.listFavorite(userId);
+		List<PostModel> posts = new ArrayList<PostModel>();
+		for(FavoriteArticles favorite: favoriteArticles) {
+			posts.add(postDao.findOne(favorite.getPostId()));
+		}
+		return posts;
+	}
+
+	@Override
+	public Integer insertFavoriteArticles(Integer userId, Integer postId) {
+		return postDao.insertFavoriteArticles(userId, postId);
+	}
+
+	@Override
+	public Integer getFavoriteArticles(Integer userId, Integer postId) {
+		return postDao.getFavoriteArticles(userId, postId);
+	}
+
+	@Override
+	public void deleteFavoriteArticle(Integer userId, Integer postId) {
+		postDao.deleteFavoriteArticle(userId, postId);
 	}
 
 }
