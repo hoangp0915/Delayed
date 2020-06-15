@@ -16,16 +16,16 @@
 				<span style="width: 50%"><i class="fa fa-user-circle-o"
 					aria-hidden="true"></i> ${postDetail.createdBy} | <i
 					class="fa fa-calendar-minus-o" aria-hidden="true"></i>
-					${postDetail.created}  {{title}} {{isFavorite ? 'true' : 'false'}}
+					${postDetail.created}
 				</span> 
 				<span style="width: 32%; float: right;" v-if="!isFavorite">
-					<button type="submit">
+					<button type="submit" v-on:click="setFavorite">
 						<i class="fa fa-thumbs-up" aria-hidden="true"></i> Thêm vào bài
 						viết ưa thích
 					</button>
 				</span> 
 				<span style="width: 25%; float: right;" v-if="isFavorite">
-					<button type="submit">
+					<button type="submit"  v-on:click="deleteFavorite">
 						<i class="fa fa-check" aria-hidden="true"></i> Bài viết ưa thích
 					</button>
 				</span>
@@ -133,7 +133,6 @@
 		},
 		mounted: function () {
 			this.getFavorite();
-			console.log('isFavorite', this.isFavorite);
 		},
 		methods: {
 			getFavorite(){
@@ -145,6 +144,26 @@
 				.catch((error) => {
 				console.log(error);
 				});
+			},
+			setFavorite(){
+				axios
+				.post("${pageContext.request.contextPath}/api/favorite?postId=${postDetail.id}")
+				.then((res) => {
+					console.log(res);
+				})
+				.catch((error) => {
+				console.log(error);
+				}).finally(() => {this.getFavorite()});
+			},
+			deleteFavorite(){
+				axios
+				.delete("${pageContext.request.contextPath}/api/favorite?postId=${postDetail.id}")
+				.then((res) => {
+					console.log(res);
+				})
+				.catch((error) => {
+				console.log(error);
+				}).finally(() => {this.getFavorite()});
 			}
 		}
 	});
