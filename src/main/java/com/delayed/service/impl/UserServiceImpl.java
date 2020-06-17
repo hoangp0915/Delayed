@@ -23,4 +23,9 @@ public class UserServiceImpl implements UserService{
 		return userDAO.login(username, password);
 	}
 
+	@Override
+	public UserModel findOneById(Integer id) {
+		return userDAO.findOneById(id);
+	}
+
 }

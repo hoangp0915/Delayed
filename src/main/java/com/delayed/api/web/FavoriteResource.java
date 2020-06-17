@@ -33,7 +33,6 @@ public class FavoriteResource extends HttpServlet {
 		Integer favorite = 0;
 		if (user != null) {
 			favorite = this.postService.getFavoriteArticles(user.getId(), Integer.parseInt(postId));
-			System.out.println("favorite: " +favorite);
 		}
 		out.print(this.gson.toJson(favorite));
 		out.flush();

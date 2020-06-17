@@ -71,33 +71,24 @@
 			<div class="box-comment">
 				<div class="box-input d-flex">
 					<input type="text" class="flex-grow-1 mr-2"
-						style="height: 32px; padding: 5px;" placeholder="Viết bình luận" />
-					<button class="buttom-comment">Bình luận</button>
+						style="height: 32px; padding: 5px;" placeholder="Viết bình luận" v-model="comment"/>
+					<button class="buttom-comment" v-on:click="commentPost">Bình luận</button>
 				</div>
 				<ul class="comments-list">
-					<li class="comment"><a class="pull-left" href="#"> <img
-							class="avatar" src="http://bootdey.com/img/Content/user_1.jpg"
-							alt="avatar" />
-					</a>
+					<li class="comment" v-for="comment in comments">
+						<a class="pull-left" href="#"> 
+							<img
+								class="avatar" src="http://bootdey.com/img/Content/user_1.jpg"
+								alt="avatar" />
+						</a>
 						<div class="comment-body">
-							<div class="comment-heading">
-								<h4 class="user">Gavino Free</h4>
-								<h5 class="time">5 minutes ago</h5>
-							</div>
-							<p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
-						</div></li>
-					<li class="comment"><a class="pull-left" href="#"> <img
-							class="avatar" src="http://bootdey.com/img/Content/user_1.jpg"
-							alt="avatar" />
-					</a>
-						<div class="comment-body">
-							<div class="comment-heading">
-								<h4 class="user">Gavino Free</h4>
-								<h5 class="time">5 minutes ago</h5>
-							</div>
-							<p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh assssssssssssds
-								dasdasjln daskld askl;jdk laskdl asjkl;d jaskl;djklas; jdkl;</p>
-						</div></li>
+								<div class="comment-heading">
+									<h4 class="user">{{comment.user.fullName}}</h4>
+									<h5 class="time">{{comment.created}}</h5>
+								</div>
+								<p>{{comment.comment}}</p>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -129,10 +120,12 @@
 		el: "#postDetail",
 		data: {
 			isFavorite : true,
-			title: "#postDetail"
+			comments: [],
+			comment: ''
 		},
 		mounted: function () {
 			this.getFavorite();
+			this.getComments();
 		},
 		methods: {
 			getFavorite(){
@@ -164,7 +157,31 @@
 				.catch((error) => {
 				console.log(error);
 				}).finally(() => {this.getFavorite()});
+			},
+			getComments(){
+				axios
+				.get("${pageContext.request.contextPath}/api/comment?postId=${postDetail.id}")
+				.then((res) => {
+					this.comments = res.data.length === 0 ? [] : res.data; 
+					console.log('Comments', res);
+				})
+				.catch((error) => {
+				console.log(error);
+				});
+			},
+			commentPost(){
+				if(this.comment.length === 0) return;
+				const url = "${pageContext.request.contextPath}/api/comment?postId=${postDetail.id}";
+				axios
+				.post(url, {comment: this.comment})
+				.then((res) => {
+					console.log(res);
+				})
+				.catch((error) => {
+				console.log(error);
+				}).finally(() => {this.getComments()});
 			}
+			
 		}
 	});
 </script>
