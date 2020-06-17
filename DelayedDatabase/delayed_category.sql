@@ -34,8 +34,18 @@ CREATE TABLE `category` (
   `updated_by` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (4,'Thời sự',NULL,'2020-05-12 15:34:16','system',NULL,NULL),(5,'Thể thao',NULL,'2020-05-28 02:29:26','system',NULL,NULL),(6,'Pháp luật',NULL,'2020-05-28 02:29:26','system',NULL,NULL),(7,'Thế giới',NULL,'2020-05-28 02:30:55','system',NULL,NULL),(8,'Test',4,'2020-06-12 18:04:06','system',NULL,NULL);
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -46,4 +56,4 @@ CREATE TABLE `category` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-04 23:08:27
+-- Dump completed on 2020-06-18  2:05:27
