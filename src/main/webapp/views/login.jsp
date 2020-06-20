@@ -29,8 +29,8 @@
 					style="color: #d6492f;" aria-hidden="true"></i></a>
 			</div>
 			<span>or use your account</span>
-			<c:if test="${not empty message}">
-				<div class="alert alert-${alert}">${message}</div>
+			<c:if test="${alert == 'invalid'}">
+				<div class="alert alert-danger">Username or password invalid</div>
 			</c:if>
 			<input type="text" placeholder="Username" name="username" /> <input
 				type="password" placeholder="Password" name="password" /> <a

@@ -26,13 +26,16 @@ public class LoginController extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		UserModel userModel = userService.login(request.getParameter("username"), request.getParameter("password"));
 		if(userModel != null) {
 			request.getSession().setAttribute("USERMODEL", userModel);
 			response.sendRedirect(request.getContextPath() + "/home");
 		}else {
-			response.sendRedirect(request.getContextPath()+"/login?message=username_password_invalid&alert=danger");
+//			response.sendRedirect(request.getContextPath()+"/login?message=username_password_invalid&alert=danger");
+			request.setAttribute("alert", "invalid");
+			RequestDispatcher rd = request.getRequestDispatcher("views/login.jsp");
+			rd.forward(request, response);
 		}
 		
 	}

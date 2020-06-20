@@ -67,8 +67,8 @@ public class PostServiceImpl implements PostService {
 	 * @see com.delayed.service.PostService#deleteById(java.lang.String)
 	 */
 	@Override
-	public void deleteByIds(String ids) {
-		postDao.deleteByIds(ids);
+	public void deleteById(Integer id) {
+		postDao.deleteById(id);
 	}
 
 	/**

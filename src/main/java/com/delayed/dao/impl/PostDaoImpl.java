@@ -31,7 +31,7 @@ public class PostDaoImpl extends ConnectionImpl<PostModel> implements PostDao {
 	 */
 	@Override
 	public List<PostModel> findAll() {
-		String sql = "SELECT * FROM post";
+		String sql = "SELECT * FROM post ORDER BY created DESC";
 		return query(sql, new PostMapper());
 	}
 
@@ -70,9 +70,9 @@ public class PostDaoImpl extends ConnectionImpl<PostModel> implements PostDao {
 	 * @see com.delayed.dao.PostDao#deleteById(java.lang.String)
 	 */
 	@Override
-	public void deleteByIds(String ids) {
-		String sql = "DELETE FROM post WHERE id IN (?)";
-		update(sql, ids);
+	public void deleteById(Integer id) {
+		String sql = "DELETE FROM post WHERE id=" + id;
+		update(sql);
 	}
 
 	@Override

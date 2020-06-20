@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.delayed.model.PostData;
 import com.delayed.model.PostModel;
 import com.delayed.model.UserModel;
-import com.delayed.service.CategoryService;
 import com.delayed.service.PostService;
 import com.google.gson.Gson;
 
@@ -28,9 +27,6 @@ public class HomeResource extends HttpServlet {
 
 	@Inject
 	private PostService postService;
-
-	@Inject
-	private CategoryService catService;
 
 	/**
 	 * Do get API {@inheritDoc}
@@ -69,6 +65,7 @@ public class HomeResource extends HttpServlet {
 
 	/**
 	 * Do Post API {@inheritDoc}
+	 * RequestBody
 	 * 
 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse)
@@ -77,9 +74,13 @@ public class HomeResource extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
+		//Lấy data từ requestBody
 		String requestBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+		//Convert to PostModel
 		PostModel post = new Gson().fromJson(requestBody, PostModel.class);
+		//Update data
 		PostModel postModel = postService.save(post);
+		//Print data đã update || null
 		out.print(this.gson.toJson(postModel));
 		out.flush();
 	}
@@ -112,8 +113,8 @@ public class HomeResource extends HttpServlet {
 	 *      javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String id = request.getParameter("ids");
-		postService.deleteByIds(id);
+		String id = request.getParameter("id");
+		postService.deleteById(Integer.parseInt(id));
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");

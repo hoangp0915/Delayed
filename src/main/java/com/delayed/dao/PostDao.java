@@ -42,7 +42,7 @@ public interface PostDao extends ConnectionDatabase<PostModel> {
 	 * 
 	 * @param ids
 	 */
-	void deleteByIds(String ids);
+	void deleteById(Integer id);
 
 	/**
 	 * Find record limit

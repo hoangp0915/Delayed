@@ -2,10 +2,8 @@ package com.delayed.service;
 
 import java.util.List;
 
-import com.delayed.model.FavoriteArticles;
 import com.delayed.model.PostData;
 import com.delayed.model.PostModel;
-import com.delayed.model.UserModel;
 
 public interface PostService {
 
@@ -37,7 +35,7 @@ public interface PostService {
 	 * 
 	 * @param ids
 	 */
-	void deleteByIds(String ids);
+	void deleteById(Integer id);
 
 	/**
 	 * Find post by id

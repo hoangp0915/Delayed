@@ -121,7 +121,8 @@
 		data: {
 			isFavorite : true,
 			comments: [],
-			comment: ''
+			comment: '',
+			username : '${USERMODEL.username}',
 		},
 		mounted: function () {
 			this.getFavorite();
@@ -129,24 +130,30 @@
 		},
 		methods: {
 			getFavorite(){
-				axios
-				.get("${pageContext.request.contextPath}/api/favorite?postId=${postDetail.id}")
-				.then((res) => {
-					this.isFavorite = (res.data === 0) ? false : true;
-				})
-				.catch((error) => {
-				console.log(error);
-				});
+				
+					axios
+					.get("${pageContext.request.contextPath}/api/favorite?postId=${postDetail.id}")
+					.then((res) => {
+						this.isFavorite = (res.data === 0) ? false : true;
+					})
+					.catch((error) => {
+					console.log(error);
+					});
+				
 			},
 			setFavorite(){
-				axios
-				.post("${pageContext.request.contextPath}/api/favorite?postId=${postDetail.id}")
-				.then((res) => {
-					console.log(res);
-				})
-				.catch((error) => {
-				console.log(error);
-				}).finally(() => {this.getFavorite()});
+				if(!!this.username){
+					axios
+					.post("${pageContext.request.contextPath}/api/favorite?postId=${postDetail.id}")
+					.then((res) => {
+						console.log(res);
+					})
+					.catch((error) => {
+					console.log(error);
+					}).finally(() => {this.getFavorite()});
+				}else{
+					window.location.href = "${pageContext.request.contextPath}/login";
+				}
 			},
 			deleteFavorite(){
 				axios
@@ -170,16 +177,20 @@
 				});
 			},
 			commentPost(){
-				if(this.comment.length === 0) return;
-				const url = "${pageContext.request.contextPath}/api/comment?postId=${postDetail.id}";
-				axios
-				.post(url, {comment: this.comment})
-				.then((res) => {
-					console.log(res);
-				})
-				.catch((error) => {
-				console.log(error);
-				}).finally(() => {this.getComments()});
+				if(!!this.username){
+					if(this.comment.length === 0) return;
+					const url = "${pageContext.request.contextPath}/api/comment?postId=${postDetail.id}";
+					axios
+					.post(url, {comment: this.comment})
+					.then((res) => {
+						console.log(res);
+					})
+					.catch((error) => {
+					console.log(error);
+					}).finally(() => {this.getComments()});
+				}else{
+					window.location.href = "${pageContext.request.contextPath}/login";
+				}
 			}
 			
 		}

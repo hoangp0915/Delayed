@@ -31,7 +31,7 @@
 						</div>
 						<ul class="sub-menu">
 							<li><a href="">Thông tin chi tiết</a></li>
-							<li><a href="">ADMIN</a></li>
+							<li><a href="<c:url value='admin' />">ADMIN</a></li>
 							<li><a href="<c:url value='home?action=logout' />">Đăng
 									xuất</a></li>
 						</ul>
