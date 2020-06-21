@@ -29,8 +29,9 @@ public class PostServiceImpl implements PostService {
 	 * @see com.delayed.service.PostService#save(com.delayed.model.PostModel)
 	 */
 	@Override
-	public PostModel save(PostModel post) {
+	public PostModel save(PostModel post, UserModel user) {
 		post.setCreated(new Timestamp(System.currentTimeMillis()));
+		post.setCreatedBy(user.getUsername());
 		Integer id = postDao.save(post);
 		return postDao.findOne(id);
 	}

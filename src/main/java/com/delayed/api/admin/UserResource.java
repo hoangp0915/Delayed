@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.delayed.model.UserModel;
 import com.delayed.service.UserService;
 import com.google.gson.Gson;
 
@@ -35,7 +36,11 @@ public class UserResource extends HttpServlet {
 		out.flush();
 	}
 
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
-
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		UserModel currentUser = (UserModel) request.getSession().getAttribute("USERMODEL");
+		String id = request.getParameter("id");
+		out.print(this.gson.toJson(userService.deleteUserById(Integer.parseInt(id), currentUser)));
+		out.flush();
 	}
 }

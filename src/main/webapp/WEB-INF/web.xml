@@ -18,6 +18,16 @@
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+	<filter>
+		<filter-name>servletFilter</filter-name>
+		<filter-class>com.delayed.common.AuthorizationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>servletFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<filter>
 		<filter-name>CharacterSetFilter</filter-name>
 		<filter-class>com.delayed.common.CharacterSetFilter</filter-class>
@@ -27,7 +37,6 @@
 		<filter-name>CharacterSetFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
 
 	<session-config>
 		<tracking-mode>COOKIE</tracking-mode>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.delayed.model.PostData;
 import com.delayed.model.PostModel;
+import com.delayed.model.UserModel;
 
 public interface PostService {
 
@@ -13,7 +14,7 @@ public interface PostService {
 	 * @param post
 	 * @return
 	 */
-	PostModel save(PostModel post);
+	PostModel save(PostModel post, UserModel user);
 
 	/**
 	 * Find all data

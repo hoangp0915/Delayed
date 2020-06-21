@@ -15,4 +15,6 @@ public interface UserDao {
 	List<UserModel> getAllUser();
 	
 	RoleModel getRoleById(Integer id);
+	
+	void deletUserById(Integer id);
 }

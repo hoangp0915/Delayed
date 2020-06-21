@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import com.delayed.common.Constant;
 import com.delayed.dao.UserDao;
 import com.delayed.model.RoleModel;
 import com.delayed.model.UserModel;
@@ -43,6 +44,15 @@ public class UserServiceImpl implements UserService{
 			}
 		}
 		return users;
+	}
+
+	@Override
+	public String deleteUserById(Integer id,  UserModel currentUser) {
+		if(currentUser.getId().equals(id)) {
+			return Constant.USER_CURRENT;
+		}
+		userDAO.deletUserById(id);
+		return Constant.DELETE_SUCCESS;
 	}
 
 }

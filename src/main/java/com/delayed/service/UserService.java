@@ -12,4 +12,6 @@ public interface UserService {
 	UserModel registration(String username, String password, String email);
 	
 	List<UserModel> getAllUser();
+	
+	String deleteUserById(Integer id, UserModel currentUser);
 }

@@ -46,4 +46,10 @@ public class UserDaoImpl extends ConnectionImpl<UserModel> implements UserDao {
 		return listRole.isEmpty() ? null : listRole.get(0);
 	}
 
+	@Override
+	public void deletUserById(Integer id) {
+		String sql = "DELETE FROM user WHERE id=" + id;
+		update(sql);
+	}
+
 }

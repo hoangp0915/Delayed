@@ -17,11 +17,11 @@ public class PostDaoImpl extends ConnectionImpl<PostModel> implements PostDao {
 	 */
 	@Override
 	public Integer save(PostModel post) {
-		StringBuilder sql = new StringBuilder("INSERT INTO post (title, decription,");
-		sql.append("content,created, created_by)");
-		sql.append(" VALUES(?, ?, ?, ?, ?)");
+		StringBuilder sql = new StringBuilder("INSERT INTO post (title, description,");
+		sql.append("content,created, created_by, category_id)");
+		sql.append(" VALUES(?, ?, ?, ?, ?, ?)");
 		return insert(sql.toString(), post.getTitle(), post.getDescription(), post.getContent(), post.getCreated(),
-				post.getCreatedBy());
+				post.getCreatedBy(), post.getCategoryId());
 	}
 
 	/**
