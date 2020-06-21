@@ -12,7 +12,7 @@
 					alt="User Image">
 			</div>
 			<div class="pull-left info">
-				<p>Admin</p>
+				<p>${USERMODEL.fullName == null ? USERMODEL.username : USERMODEL.fullName}</p>
 				<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 			</div>
 		</div>
@@ -42,7 +42,7 @@
 				</span>
 			</a>
 				<ul class="treeview-menu">
-					<li><a href="#"><i class="fa fa-circle-o"></i> Thêm bài
+					<li><a href="<c:url value='adminformPost?action=create' />"><i class="fa fa-circle-o"></i> Thêm bài
 							viết</a></li>
 					<li><a href="<c:url value='admin' />"> <i class="fa fa-circle-o"></i> Danh sách bài viết
 							

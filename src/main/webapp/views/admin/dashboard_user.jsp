@@ -36,14 +36,13 @@
 		<!-- ./col -->
 	
 		<!-- ./col -->
-		<div>
+		<div class="col-lg-12">
 			<table class="table table-bordered" id="myTable">
 				<thead>
 					<tr>
-						<th>Tiêu đề</th>
-						<th>Nội dung</th>
-						<th>Ngày tạo</th>
-						<th>Thao tác</th>
+						<th>Tài khoản</th>
+						<th>Tên</th>	
+						<th>Thao tác</th>					
 					</tr>
 				</thead>
 				<tbody>
@@ -58,15 +57,19 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		let data = [];
-		axios.get('http://localhost:8080/Delayed/api/crawl-data').then((rs)=>{
+		axios.get('${pageContext.request.contextPath}/api/listUser').then((rs)=>{
 			data = rs.data;
 			let count = 0;
 			for (var key in data) {
 				count = data.length;
-				$('#myTable').append('<tr><td>' + data[key].title + '</td>'+
-									'<td>' + data[key].description + '</td>'+
-									'<td>' + data[key].created + '</td>'+
-									'<td><a id="add">Thêm</a><a id="update">Sửa</a><a id="delete">Xóa</a></td>'
+				$('#myTable').append('<tr><td>' + data[key].username + '</td>'+
+									'<td>' + data[key].fullName + '</td>'+								
+
+									'<td>'
+									+ '<a  class="btn btn-success mr-1"'+'data-code="'+data[key].id+'"'+'>Sửa</a>'
+									+ '<a  onclick=onClickDelete(this) class="btn btn-danger"'
+									+ 'id="' + data[key].id + '"'
+									+ '>Xóa</a>' + '</td>'
 									+'</tr>'
 				);	
 			   
@@ -80,5 +83,12 @@
 	});
 		
 
-		
+
+	function onClickDelete(e) {		
+		$(e).parents('tr').remove();//remove tren form, chua remove trong database
+		console.log(e.id);
+		//e.id la id cua row dang click
+		//xu ly vs database
+		//axios.post('${pageContext.request.contextPath}/api/category/delete',{id:e.id});
+	}
 </script>

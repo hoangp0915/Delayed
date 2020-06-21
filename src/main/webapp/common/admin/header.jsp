@@ -3,7 +3,7 @@
 <%@include file="/common/taglib.jsp"%>
 <header class="main-header">
 	<!-- Logo -->
-	<a href="index.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+	<a href="<c:url value='admin' />" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		<span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices -->
 		<span class="logo-lg"><b>Admin</b>LTE</span>
 	</a>
@@ -18,7 +18,7 @@
 
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
-				<li class="notifications-menu"><a href="#"
+				<li class="notifications-menu"><a href="<c:url value='/' />"
 					class="dropdown-toggle" data-toggle="dropdown"> <i
 						class="fa fa-bell-o"></i> Website
 				</a></li>

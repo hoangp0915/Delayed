@@ -58,7 +58,7 @@
 	
 	async function makeGetRequest() {
 
-		let res = await	axios.get('http://localhost:8080/Delayed/api/category?action=all');
+		let res = await	axios.get('${pageContext.request.contextPath}/api/category?action=all');
 
 		let data = res.data;
 		let count = data.length;
@@ -91,6 +91,6 @@
 		console.log(e.id);
 		//e.id la id cua row dang click
 		//xu ly vs database
-		//axios.post('http://localhost:8080/Delayed/api/category/delete',{id:e.id});
+		//axios.post('${pageContext.request.contextPath}/api/category/delete',{id:e.id});
 	}
 </script>
