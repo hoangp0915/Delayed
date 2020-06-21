@@ -59,9 +59,9 @@ public class PostDaoImpl extends ConnectionImpl<PostModel> implements PostDao {
 	public void update(PostModel post) {
 		StringBuilder sql = new StringBuilder("UPDATE post SET title = ?,");
 		sql.append(" description = ?, content = ?,");
-		sql.append("updated = ?, updated_by = ? WHERE id = ?");
+		sql.append("updated = ?, updated_by = ?, category_id = ? WHERE id = ?");
 		update(sql.toString(), post.getTitle(), post.getDescription(), post.getContent(), post.getUpdated(),
-				post.getUpdatedBy(), post.getId());
+				post.getUpdatedBy(),post.getCategoryId(), post.getId());
 	}
 
 	/**
