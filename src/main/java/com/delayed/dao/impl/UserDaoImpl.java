@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.delayed.common.Constant;
 import com.delayed.dao.UserDao;
+import com.delayed.mapper.RoleMapper;
 import com.delayed.mapper.UserMapper;
+import com.delayed.model.RoleModel;
 import com.delayed.model.UserModel;
 
 public class UserDaoImpl extends ConnectionImpl<UserModel> implements UserDao {
@@ -29,6 +31,19 @@ public class UserDaoImpl extends ConnectionImpl<UserModel> implements UserDao {
 		StringBuilder sql = new StringBuilder("INSERT INTO user (username, password, email, role)");
 		sql.append(" VALUES (?, ?, ?, ?)");
 		return insert(sql.toString(), username, password, email, Constant.ROLE_MEMBER);
+	}
+
+	@Override
+	public List<UserModel> getAllUser() {
+		String sql = "SELECT * FROM user";
+		return query(sql, new UserMapper());
+	}
+
+	@Override
+	public RoleModel getRoleById(Integer id) {
+		String sql = "SELECT * FROM role WHERE id=?";
+		List<RoleModel> listRole = query(sql, new RoleMapper(), id);
+		return listRole.isEmpty() ? null : listRole.get(0);
 	}
 
 }
