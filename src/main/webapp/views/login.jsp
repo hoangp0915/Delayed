@@ -3,16 +3,18 @@
 <%@include file="/common/taglib.jsp"%>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+		<form action="<c:url value='/login?action=register'/>" method="POST">
 			<h1>Đăng ký</h1>
+			<c:if test="${alert == 'fail'}">
+				<div class="alert alert-danger">${message}</div>
+			</c:if>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fa fa-google-plus"
 					style="color: #d6492f;" aria-hidden="true"></i></a>
 			</div>
 			<span>or use your email for registration</span> <input type="text"
-				placeholder="Username" /> <input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" /> <input
-				type="password" placeholder="Repasswrod" />
+				placeholder="Username" name="username"/> <input type="email" placeholder="Email" name="email"/>
+			<input type="password" placeholder="Password" id="passwordRegis" name="password"/>
 			<button style="margin-top: 10px;">Đăng ký</button>
 		</form>
 	</div>
@@ -30,7 +32,10 @@
 			</div>
 			<span>or use your account</span>
 			<c:if test="${alert == 'invalid'}">
-				<div class="alert alert-danger">Username or password invalid</div>
+				<div class="alert alert-danger">Sai username hoặc password</div>
+			</c:if>
+			<c:if test="${alert == 'success'}">
+				<div class="alert alert-success">${message}</div>
 			</c:if>
 			<input type="text" placeholder="Username" name="username" /> <input
 				type="password" placeholder="Password" name="password" /> <a
@@ -64,4 +69,10 @@
   signInButton.addEventListener("click", () => {
     container.classList.remove("right-panel-active");
   });
+  const classServer = "${classActive}";
+  if(!!classServer){
+	  container.classList.add("right-panel-active");
+  }
+ console.log(classServer);
+  
 </script>

@@ -28,4 +28,10 @@ public class UserServiceImpl implements UserService{
 		return userDAO.findOneById(id);
 	}
 
+	@Override
+	public UserModel registration(String username, String password, String email) {
+		Integer id = userDAO.registration(username, password, email);
+		return userDAO.findOneById(id);
+	}
+
 }

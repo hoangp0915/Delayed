@@ -27,15 +27,34 @@ public class LoginController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		UserModel userModel = userService.login(request.getParameter("username"), request.getParameter("password"));
-		if(userModel != null) {
-			request.getSession().setAttribute("USERMODEL", userModel);
-			response.sendRedirect(request.getContextPath() + "/home");
-		}else {
-//			response.sendRedirect(request.getContextPath()+"/login?message=username_password_invalid&alert=danger");
-			request.setAttribute("alert", "invalid");
+		String action = request.getParameter("action");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		if(action != null && action.equals("register")) {
+			String email = request.getParameter("email");
+			System.out.println("username: " + username + " password: " + password + "email: " + email);
+			UserModel userRegis = userService.registration(username, password, email);
 			RequestDispatcher rd = request.getRequestDispatcher("views/login.jsp");
+			if(userRegis != null) {
+				request.setAttribute("alert", "success");
+				request.setAttribute("message", "Đăng ký tài khoản thành công!");
+			}else {
+				request.setAttribute("alert", "fail");
+				request.setAttribute("classActive", "right-panel-active");
+				request.setAttribute("message", "Username tồn tại!");
+			}
+			
 			rd.forward(request, response);
+		}else {
+			UserModel userModel = userService.login(request.getParameter("username"), request.getParameter("password"));
+			if(userModel != null) {
+				request.getSession().setAttribute("USERMODEL", userModel);
+				response.sendRedirect(request.getContextPath() + "/home");
+			}else {
+				request.setAttribute("alert", "invalid");
+				RequestDispatcher rd = request.getRequestDispatcher("views/login.jsp");
+				rd.forward(request, response);
+			}
 		}
 		
 	}

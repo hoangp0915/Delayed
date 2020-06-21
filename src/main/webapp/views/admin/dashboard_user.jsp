@@ -6,7 +6,7 @@
 	<h1>Dashboard</h1>
 	<ol class="breadcrumb">
 		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Bài viết</li>
+		<li class="active">Tài khoản</li>
 	</ol>
 </section>
 
@@ -15,23 +15,26 @@
 
 	<div class="row">
 
-		<div class="col-lg-4 col-xs-6">
-			<!-- small box -->
-			<div class="small-box bg-aqua">
-				<div class="inner">
-					<h3 id="count-post"></h3>
+		
 
-					<p>Bài viết</p>
+		<!-- ./col -->
+		<div class="col-lg-3 col-xs-6">
+			<!-- small box -->
+			<div class="small-box bg-yellow">
+				<div class="inner">
+					<h3>4</h3>
+
+					<p>User</p>
 				</div>
 				<div class="icon">
-					<i class="ion ion-bag"></i>
+					<i class="ion ion-person-add"></i>
 				</div>
 				<a href="#" class="small-box-footer">More info <i
 					class="fa fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
-
-
+		<!-- ./col -->
+	
 		<!-- ./col -->
 		<div>
 			<table class="table table-bordered" id="myTable">
@@ -44,7 +47,7 @@
 					</tr>
 				</thead>
 				<tbody>
-
+					
 				</tbody>
 			</table>
 		</div>
@@ -55,24 +58,15 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		let data = [];
-		//Data chưa có field creatdate và id
 		axios.get('http://localhost:8080/Delayed/api/crawl-data').then((rs)=>{
 			data = rs.data;
 			let count = 0;
 			for (var key in data) {
 				count = data.length;
-				let date = new Date(data[key].created);
-				let day = date.getDate();
-				let month = date.getMonth();
 				$('#myTable').append('<tr><td>' + data[key].title + '</td>'+
-									'<td>' + data[key].description.slice(0, 25) + (data[key].description.length > 25 ? "..." : "") + '</td>'+
-									'<td>' + day +'/' +month + '</td>'+
-								
-									'<td>'
-									+ '<a  class="btn btn-success mr-1"'+'data-code="'+data[key].id+'"'+'>Sửa</a>'
-									+ '<a  onclick=onClickDelete(this) class="btn btn-danger"'
-									+ 'id="' + data[key].id + '"'
-									+ '>Xóa</a>' + '</td>'
+									'<td>' + data[key].description + '</td>'+
+									'<td>' + data[key].created + '</td>'+
+									'<td><a id="add">Thêm</a><a id="update">Sửa</a><a id="delete">Xóa</a></td>'
 									+'</tr>'
 				);	
 			   
@@ -85,14 +79,6 @@
 	
 	});
 		
-	
-	function onClickDelete(e) {		
-		$(e).parents('tr').remove();//remove tren form, chua remove trong database
-		console.log(e.id);
-		//e.id la id cua row dang click
-		//xu ly vs database
-		//axios.post('http://localhost:8080/Delayed/api/category/delete',{id:e.id});
-	}
 
 		
 </script>

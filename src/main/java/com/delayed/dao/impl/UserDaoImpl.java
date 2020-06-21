@@ -2,6 +2,7 @@ package com.delayed.dao.impl;
 
 import java.util.List;
 
+import com.delayed.common.Constant;
 import com.delayed.dao.UserDao;
 import com.delayed.mapper.UserMapper;
 import com.delayed.model.UserModel;
@@ -21,6 +22,13 @@ public class UserDaoImpl extends ConnectionImpl<UserModel> implements UserDao {
 		String sql = "SELECT * FROM user WHERE id=?";
 		List<UserModel> users = query(sql, new UserMapper(), id);
 		return users.isEmpty() ? null : users.get(0);
+	}
+
+	@Override
+	public Integer registration(String username, String password, String email) {
+		StringBuilder sql = new StringBuilder("INSERT INTO user (username, password, email, role)");
+		sql.append(" VALUES (?, ?, ?, ?)");
+		return insert(sql.toString(), username, password, email, Constant.ROLE_MEMBER);
 	}
 
 }

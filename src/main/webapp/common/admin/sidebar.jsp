@@ -8,7 +8,7 @@
 		<!-- Sidebar user panel -->
 		<div class="user-panel">
 			<div class="pull-left image">
-				<img src="dist/img/user2-160x160.jpg" class="img-circle"
+				<img src="<c:url value='assets/admin/dist/img/user2-160x160.jpg' />" class="img-circle"
 					alt="User Image">
 			</div>
 			<div class="pull-left info">
@@ -44,8 +44,9 @@
 				<ul class="treeview-menu">
 					<li><a href="#"><i class="fa fa-circle-o"></i> Thêm bài
 							viết</a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> Danh sách
-							bài viết</a></li>
+					<li><a href="<c:url value='admin' />"> <i class="fa fa-circle-o"></i> Danh sách bài viết
+							
+					</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"> <i class="fa fa-share"></i>
 					<span> Danh mục</span> <span class="pull-right-container"> <i
@@ -56,7 +57,7 @@
 					<li><a href="#"> <i class="fa fa-circle-o"></i> Thêm danh
 							mục
 					</a></li>
-					<li><a href="#"> <i class="fa fa-circle-o"></i> Danh sách
+					<li><a href="<c:url value='adminViewCategory' />"> <i class="fa fa-circle-o"></i> Danh sách
 							danh mục
 					</a></li>
 				</ul></li>
@@ -68,8 +69,8 @@
 				<ul class="treeview-menu">
 					<li><a href="#"> <i class="fa fa-circle-o"></i> Thêm user
 					</a></li>
-					<li><a href="#"> <i class="fa fa-circle-o"></i> Danh sách
-							user
+					<li><a href="<c:url value='adminUserView' />"> <i class="fa fa-circle-o"></i> Danh sách
+							User
 					</a></li>
 				</ul></li>
 
