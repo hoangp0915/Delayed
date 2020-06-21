@@ -19,7 +19,12 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public UserModel login(String username, String password) {
-		return userDAO.login(username, password);
+		UserModel loginUser = userDAO.login(username, password);
+		if(loginUser.getRoleId() != null) {
+			RoleModel role = userDAO.getRoleById(loginUser.getRoleId());
+			loginUser.setRole(role);
+		}
+		return loginUser;
 	}
 
 	@Override

@@ -80,10 +80,6 @@ public class HomeResource extends HttpServlet {
 		//Convert to PostModel
 		PostModel post = new Gson().fromJson(requestBody, PostModel.class);
 		//Update data
-		System.out.println("getTitle" + post.getTitle());
-		System.out.println("getContent" + post.getContent());
-		System.out.println("getDescription" + post.getDescription());
-		System.out.println("getCategoryId" + post.getCategoryId());
 		UserModel user = (UserModel) request.getSession().getAttribute("USERMODEL");
 		PostModel postModel = postService.save(post, user);
 		//Print data đã update || null
@@ -103,8 +99,9 @@ public class HomeResource extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String requestBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 		PostModel post = new Gson().fromJson(requestBody, PostModel.class);
+		UserModel user = (UserModel) request.getSession().getAttribute("USERMODEL");
 		try {
-			postService.updateById(post);
+			postService.updateById(post, user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -52,10 +52,11 @@ public class PostServiceImpl implements PostService {
 	 * @see com.delayed.service.PostService#updateById(com.delayed.model.PostModel)
 	 */
 	@Override
-	public void updateById(PostModel post) throws Exception {
+	public void updateById(PostModel post, UserModel user) throws Exception {
 		PostModel find = postDao.findOne(post.getId());
 		if (find != null) {
 			post.setUpdated(new Timestamp(System.currentTimeMillis()));
+			post.setUpdatedBy(user.getUsername());
 			postDao.update(post);
 		} else {
 			throw new Exception("Post not found.");

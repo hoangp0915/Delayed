@@ -48,6 +48,7 @@ public class LoginController extends HttpServlet {
 		}else {
 			UserModel userModel = userService.login(request.getParameter("username"), request.getParameter("password"));
 			if(userModel != null) {
+				System.out.println("Role: " + userModel.getRole().getCode());
 				request.getSession().setAttribute("USERMODEL", userModel);
 				response.sendRedirect(request.getContextPath() + "/home");
 			}else {

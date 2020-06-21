@@ -29,7 +29,7 @@ public interface PostService {
 	 * @param post
 	 * @throws Exception
 	 */
-	void updateById(PostModel post) throws Exception;
+	void updateById(PostModel post, UserModel user) throws Exception;
 
 	/**
 	 * Delete multiple record by ids
