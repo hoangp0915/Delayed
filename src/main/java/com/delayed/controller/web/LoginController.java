@@ -41,7 +41,7 @@ public class LoginController extends HttpServlet {
 			}else {
 				request.setAttribute("alert", "fail");
 				request.setAttribute("classActive", "right-panel-active");
-				request.setAttribute("message", "Username tồn tại!");
+				request.setAttribute("message", "Tài khoản hoặc email tồn tại!");
 			}
 			
 			rd.forward(request, response);

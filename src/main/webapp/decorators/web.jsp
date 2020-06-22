@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title><dec:title default="Trang chủ" /></title>
+<title><dec:title default="Website tin tức" /></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Demo</title>
+<title><dec:title default="Trang chủ - Website tin tức" /></title>
+<link rel="shortcut icon" type="image/png" href="<c:url value='/assets/web/images/logo.png' />"/>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"

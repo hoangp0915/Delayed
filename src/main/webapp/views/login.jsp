@@ -5,14 +5,15 @@
 	<div class="form-container sign-up-container">
 		<form action="<c:url value='/login?action=register'/>" method="POST">
 			<h1>Đăng ký</h1>
-			<c:if test="${alert == 'fail'}">
-				<div class="alert alert-danger">${message}</div>
-			</c:if>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fa fa-google-plus"
 					style="color: #d6492f;" aria-hidden="true"></i></a>
 			</div>
-			<span>or use your email for registration</span> <input type="text"
+			<span>or use your email for registration</span> 
+			<c:if test="${alert == 'fail'}">
+				<div class="alert alert-danger">${message}</div>
+			</c:if>
+			<input type="text"
 				placeholder="Username" name="username"/> <input type="email" placeholder="Email" name="email"/>
 			<input type="password" placeholder="Password" id="passwordRegis" name="password"/>
 			<button style="margin-top: 10px;">Đăng ký</button>
@@ -32,7 +33,7 @@
 			</div>
 			<span>or use your account</span>
 			<c:if test="${alert == 'invalid'}">
-				<div class="alert alert-danger">Sai username hoặc password</div>
+				<div class="alert alert-danger">Sai tài khoản hoặc mật khẩu</div>
 			</c:if>
 			<c:if test="${alert == 'success'}">
 				<div class="alert alert-success">${message}</div>

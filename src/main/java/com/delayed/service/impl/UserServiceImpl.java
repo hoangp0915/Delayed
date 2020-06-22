@@ -35,6 +35,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserModel registration(String username, String password, String email) {
+		UserModel userExist = userDAO.findOneByUsernameAndEmail(username, email);
+		if(userExist != null) {
+			return null;
+		}
 		Integer id = userDAO.registration(username, password, email);
 		return userDAO.findOneById(id);
 	}
@@ -43,7 +47,6 @@ public class UserServiceImpl implements UserService {
 	public List<UserModel> getAllUser() {
 		List<UserModel> users = userDAO.getAllUser();
 		for (UserModel user : users) {
-			System.out.print("User role: " + user.getRoleId());
 			if (user.getRoleId() != null) {
 				RoleModel role = userDAO.getRoleById(user.getRoleId());
 				user.setRole(role);

@@ -10,6 +10,8 @@ public interface UserDao {
 	
 	UserModel findOneById(Integer id);
 	
+	UserModel findOneByUsernameAndEmail(String username, String email);
+	
 	Integer registration(String username, String password, String email);
 	
 	List<UserModel> getAllUser();

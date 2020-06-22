@@ -52,4 +52,11 @@ public class UserDaoImpl extends ConnectionImpl<UserModel> implements UserDao {
 		update(sql);
 	}
 
+	@Override
+	public UserModel findOneByUsernameAndEmail(String username, String email) {
+		String sql = "SELECT * FROM user WHERE username=? OR email=?";
+		List<UserModel> users = query(sql, new UserMapper(), username, email);
+		return users.isEmpty() ? null : users.get(0);
+	}
+
 }
