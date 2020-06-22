@@ -92,7 +92,6 @@
         axios
           .get(url)
           .then((response) => {
-            console.log(response);
             if (response.data.length < this.pageable.size) {
             	this.hidden = true;
             }

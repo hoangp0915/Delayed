@@ -34,7 +34,6 @@ public class PostDetailResource extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		String postId = request.getParameter("postId");
-		System.out.print("postId" + postId);
 		List<CommentModel> comments = commentService.listCommentByPost(Integer.parseInt(postId));
 		out.print(this.gson.toJson(comments));
 		out.flush();

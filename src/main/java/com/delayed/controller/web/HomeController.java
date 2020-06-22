@@ -24,7 +24,6 @@ public class HomeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-		System.out.println(action);
 		if (action != null && action.equals("logout")) {
 			request.getSession().removeAttribute("USERMODEL");
 			response.sendRedirect(request.getContextPath()+"/home");

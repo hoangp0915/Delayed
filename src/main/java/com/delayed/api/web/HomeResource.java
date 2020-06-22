@@ -76,7 +76,6 @@ public class HomeResource extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		//Lấy data từ requestBody
 		String requestBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-		System.out.println("requestBody" + requestBody);
 		//Convert to PostModel
 		PostModel post = new Gson().fromJson(requestBody, PostModel.class);
 		//Update data

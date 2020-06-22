@@ -95,7 +95,6 @@ public class PostServiceImpl implements PostService {
 		if (page != 0) {
 			page = page * size;
 		}
-		System.out.println(page);
 		List<PostModel> list = postDao.listRecord(page, size);
 		return list;
 	}

@@ -171,7 +171,6 @@
 				.get("${pageContext.request.contextPath}/api/comment?postId=${postDetail.id}")
 				.then((res) => {
 					this.comments = res.data.length === 0 ? [] : res.data; 
-					console.log('Comments', res);
 				})
 				.catch((error) => {
 				console.log(error);

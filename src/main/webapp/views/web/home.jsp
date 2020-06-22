@@ -131,9 +131,7 @@
                     url: "${pageContext.request.contextPath}/post?id=" + data.id,
                   };
                 });
-                console.log("result: ", result);
                 this.data = [...this.data, ...result];
-                console.log(this.data);
             })
             .catch((error) => {
               console.log(error);

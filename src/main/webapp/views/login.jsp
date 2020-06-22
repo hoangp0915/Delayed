@@ -74,6 +74,5 @@
   if(!!classServer){
 	  container.classList.add("right-panel-active");
   }
- console.log(classServer);
   
 </script>

@@ -34,13 +34,11 @@ public class ConnectionImpl<T> implements ConnectionDatabase<T> {
 	public void update(String sql, Object... parameters) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		System.out.println("parameters " + parameters.toString());
 		try {
 			connection = getConnection();
 			connection.setAutoCommit(false);
 			statement = connection.prepareStatement(sql);
 			setParameter(statement, parameters);
-			System.out.println("Update " + statement.toString());
 			statement.executeUpdate();
 			connection.commit();
 		} catch (SQLException e) {

@@ -32,7 +32,6 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		if(action != null && action.equals("register")) {
 			String email = request.getParameter("email");
-			System.out.println("username: " + username + " password: " + password + "email: " + email);
 			UserModel userRegis = userService.registration(username, password, email);
 			RequestDispatcher rd = request.getRequestDispatcher("views/login.jsp");
 			if(userRegis != null) {
@@ -48,7 +47,6 @@ public class LoginController extends HttpServlet {
 		}else {
 			UserModel userModel = userService.login(username, password);
 			if(userModel != null) {
-				System.out.println("Role: " + userModel.getRole().getCode());
 				request.getSession().setAttribute("USERMODEL", userModel);
 				response.sendRedirect(request.getContextPath() + "/home");
 			}else {
