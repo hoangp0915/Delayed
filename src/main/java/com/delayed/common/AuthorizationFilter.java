@@ -35,7 +35,7 @@ public class AuthorizationFilter implements Filter {
                 if (user.getRole().getCode().equals(Constant.ADMIN)) {
                 	chain.doFilter(servletRequest, servletResponse);
                 } else if (user.getRole().getCode().equals(Constant.MEMBER)) {
-                    response.sendRedirect(request.getContextPath()+"/login");
+                    response.sendRedirect(request.getContextPath()+"/home");
                 }
             } else {
                 response.sendRedirect(request.getContextPath()+"/login");
