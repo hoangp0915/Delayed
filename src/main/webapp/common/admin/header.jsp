@@ -15,20 +15,18 @@
 			class="icon-bar"></span> <span class="icon-bar"></span> <span
 			class="icon-bar"></span>
 		</a>
-
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<li class="notifications-menu"><a href="<c:url value='/' />"
-					class="dropdown-toggle" data-toggle="dropdown"> <i
+					class="dropdown-toggle" target="_blank"> <i
 						class="fa fa-bell-o"></i> Website
 				</a></li>
 				<!-- Notifications: style can be found in dropdown.less -->
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Đổi mật khẩu</a></li>
-						<li><a href="#">Chỉnh sửa thông tin</a></li>
-						<li><a href="#">Đăng xuất</a></li>
+						<li><a href="<c:url value='home?action=logout' />">Đăng
+								xuất</a></li>
 					</ul></li>
 
 			</ul>

@@ -12,15 +12,16 @@ import com.delayed.dao.UserDao;
 import com.delayed.model.RoleModel;
 import com.delayed.model.UserModel;
 import com.delayed.service.UserService;
-public class UserServiceImpl implements UserService{
+
+public class UserServiceImpl implements UserService {
 
 	@Inject
 	private UserDao userDAO;
-	
+
 	@Override
 	public UserModel login(String username, String password) {
 		UserModel loginUser = userDAO.login(username, password);
-		if(loginUser.getRoleId() != null) {
+		if(loginUser != null && loginUser.getRoleId() != null) {			
 			RoleModel role = userDAO.getRoleById(loginUser.getRoleId());
 			loginUser.setRole(role);
 		}
@@ -41,9 +42,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<UserModel> getAllUser() {
 		List<UserModel> users = userDAO.getAllUser();
-		for(UserModel user: users) {
-			System.out.print("User role: "+ user.getRoleId());
-			if(user.getRoleId() != null) {
+		for (UserModel user : users) {
+			System.out.print("User role: " + user.getRoleId());
+			if (user.getRoleId() != null) {
 				RoleModel role = userDAO.getRoleById(user.getRoleId());
 				user.setRole(role);
 			}
@@ -52,8 +53,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public String deleteUserById(Integer id,  UserModel currentUser) {
-		if(currentUser.getId().equals(id)) {
+	public String deleteUserById(Integer id, UserModel currentUser) {
+		if (currentUser.getId().equals(id)) {
 			return Constant.USER_CURRENT;
 		}
 		userDAO.deletUserById(id);

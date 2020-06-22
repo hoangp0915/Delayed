@@ -46,7 +46,7 @@ public class LoginController extends HttpServlet {
 			
 			rd.forward(request, response);
 		}else {
-			UserModel userModel = userService.login(request.getParameter("username"), request.getParameter("password"));
+			UserModel userModel = userService.login(username, password);
 			if(userModel != null) {
 				System.out.println("Role: " + userModel.getRole().getCode());
 				request.getSession().setAttribute("USERMODEL", userModel);

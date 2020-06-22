@@ -25,7 +25,7 @@
 					<li class="mr-0">
 						<div>
 							<a class="bt-2-w d-flex d-align-items"> <img
-								src="https://via.placeholder.com/150" class="mr-1" alt="">
+								src="http://bootdey.com/img/Content/user_1.jpg" class="mr-1" alt="">
 								<div>${USERMODEL.fullName == null ? USERMODEL.username : USERMODEL.fullName}</div>
 							</a>
 						</div>

@@ -8,7 +8,7 @@
 		<!-- Sidebar user panel -->
 		<div class="user-panel">
 			<div class="pull-left image">
-				<img src="<c:url value='assets/admin/dist/img/user2-160x160.jpg' />" class="img-circle"
+				<img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle"
 					alt="User Image">
 			</div>
 			<div class="pull-left info">
