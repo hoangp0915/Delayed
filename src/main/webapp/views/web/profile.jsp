@@ -7,7 +7,7 @@
 			<div class="box-title">
 				<i class="fa fa-gamepad" aria-hidden="true"> Thông tin tài khoản</i>
 			</div>
-			<div class="box-body">
+			<div class="box-body" id="profile">
 				<div class="row mt-15">
 					<label class="input-label">Tài khoản: </label>
 					<div>
@@ -35,23 +35,23 @@
 				<div class="row">
 					<label class="input-label"></label>
 					<div class="hasCheckBox">
-						<input type="checkbox"> <span class="label">Thay
+						<input type="checkbox" v-model="show"> <span class="label">Thay
 							đổi mật khẩu </span>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" v-if="show">
 					<label class="input-label">Mật khẩu cũ: </label>
 					<div>
 						<input type="password">
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" v-if="show">
 					<label class="input-label">Mật khẩu mới: </label>
 					<div>
 						<input type="password">
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" v-if="show">
 					<label class="input-label">Nhập lại mật khẩu mới: </label>
 					<div>
 						<input type="password">
@@ -70,3 +70,12 @@
 	<%@ include file="/common/web/sidebar.jsp"%>
 	<!-- end Sidebar -->
 </div>
+<script>
+	new Vue({
+		el: "#profile",
+		data:{
+			show: false
+		}
+	});
+
+</script>
