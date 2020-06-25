@@ -78,4 +78,6 @@ public interface PostService {
 	Integer getFavoriteArticles(Integer userId, Integer postId);
 	
 	void deleteFavoriteArticle(Integer userId, Integer postId);
+	
+	void updateView(PostModel post);
 }

@@ -18,9 +18,10 @@ import com.delayed.model.PostData;
 import com.delayed.model.PostModel;
 import com.delayed.model.UserModel;
 import com.delayed.service.CommentService;
+import com.delayed.service.PostService;
 import com.google.gson.Gson;
 
-@WebServlet("/api/comment")
+@WebServlet(urlPatterns = {"/api/comment", "/api/post-detail"})
 public class PostDetailResource extends HttpServlet {
 
 	private static final long serialVersionUID = 749848518786342726L;
@@ -29,6 +30,9 @@ public class PostDetailResource extends HttpServlet {
 	
 	@Inject
 	private CommentService commentService;
+	
+	@Inject
+	private PostService postService;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -58,5 +62,13 @@ public class PostDetailResource extends HttpServlet {
 	        }
 	    }
 	    return sb.toString();
+	}
+	
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String postId = request.getParameter("postId");
+		PostModel post = postService.findById(Integer.parseInt(postId));
+		post.setViews(post.getViews() + 1);
+		postService.updateView(post);
 	}
 }

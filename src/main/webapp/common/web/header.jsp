@@ -30,7 +30,7 @@
 							</a>
 						</div>
 						<ul class="sub-menu">
-							<li><a href="">Thông tin chi tiết</a></li>
+							<li><a href="<c:url value='profile' />">Thông tin chi tiết</a></li>
 							<c:if test="${USERMODEL.role.code == 'ADMIN'}">
 							<li><a href="<c:url value='admin' />">ADMIN</a></li>
 							</c:if>

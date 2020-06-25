@@ -8,6 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Admin</title>
 <!-- Tell the browser to be responsive to screen width -->
+<link rel="shortcut icon" type="image/png" href="<c:url value='/assets/web/images/logo.png' />"/>
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">

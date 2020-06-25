@@ -128,6 +128,7 @@
 		mounted: function () {
 			this.getFavorite();
 			this.getComments();
+			this.setViewForPost();
 		},
 		methods: {
 			getFavorite(){
@@ -191,7 +192,17 @@
 				}else{
 					window.location.href = "${pageContext.request.contextPath}/login";
 				}
-			}
+			},
+			setViewForPost(){
+					axios
+					.put("${pageContext.request.contextPath}/api/post-detail?postId=${postDetail.id}")
+					.then((res) => {
+						console.log(res);
+					})
+					.catch((error) => {
+					console.log(error);
+					}).finally(() => {this.getFavorite()});
+			},
 			
 		}
 	});

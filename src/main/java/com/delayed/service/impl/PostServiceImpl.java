@@ -166,4 +166,9 @@ public class PostServiceImpl implements PostService {
 		postDao.deleteFavoriteArticle(userId, postId);
 	}
 
+	@Override
+	public void updateView(PostModel post) {
+		postDao.updateView(post);
+	}
+
 }

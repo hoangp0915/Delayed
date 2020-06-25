@@ -26,6 +26,7 @@ public class PostMapper implements RowMapper<PostModel> {
 			if (rs.getString("updated_by") != null) {
 				news.setUpdatedBy(rs.getString("updated_by"));
 			}
+			news.setViews(rs.getInt("views"));
 			return news;
 		} catch (SQLException e) {
 			return null;

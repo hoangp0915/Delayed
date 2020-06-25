@@ -130,4 +130,10 @@ public class PostDaoImpl extends ConnectionImpl<PostModel> implements PostDao {
 		update(sql, userId, postId);
 	}
 
+	@Override
+	public void updateView(PostModel post) {
+		String sql = "UPDATE post SET views = ? WHERE id=?";
+		update(sql, post.getViews(), post.getId());
+	}
+
 }

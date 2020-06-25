@@ -67,4 +67,6 @@ public interface PostDao extends ConnectionDatabase<PostModel> {
 	Integer getFavoriteArticles(Integer userId, Integer postId);
 	
 	void deleteFavoriteArticle(Integer userId, Integer postId);
+	
+	void updateView(PostModel post);
 }
