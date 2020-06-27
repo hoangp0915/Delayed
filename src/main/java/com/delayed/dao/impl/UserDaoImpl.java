@@ -59,4 +59,11 @@ public class UserDaoImpl extends ConnectionImpl<UserModel> implements UserDao {
 		return users.isEmpty() ? null : users.get(0);
 	}
 
+	@Override
+	public void updateProfile(UserModel user) {
+		StringBuilder sql = new StringBuilder("UPDATE user SET fullname = ?,");
+		sql.append(" email = ?, password = ? WHERE username = ?");
+		update(sql.toString(), user.getFullName(), user.getEmail(), user.getPassword(), user.getUsername());
+	}
+
 }

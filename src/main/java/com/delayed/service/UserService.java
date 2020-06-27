@@ -14,4 +14,6 @@ public interface UserService {
 	List<UserModel> getAllUser();
 	
 	String deleteUserById(Integer id, UserModel currentUser);
+	
+	void changeProfile(UserModel user);
 }

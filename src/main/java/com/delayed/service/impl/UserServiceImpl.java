@@ -64,4 +64,9 @@ public class UserServiceImpl implements UserService {
 		return Constant.DELETE_SUCCESS;
 	}
 
+	@Override
+	public void changeProfile(UserModel user) {
+		userDAO.updateProfile(user);
+	}
+
 }

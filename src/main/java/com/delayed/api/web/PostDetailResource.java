@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.delayed.common.Constant;
 import com.delayed.model.CommentModel;
 import com.delayed.model.CommentRequestBody;
 import com.delayed.model.PostData;
@@ -47,21 +48,11 @@ public class PostDetailResource extends HttpServlet {
 			throws ServletException, IOException {
 		UserModel user = (UserModel) request.getSession().getAttribute("USERMODEL");
 		String postId = request.getParameter("postId");
-		CommentRequestBody crb = this.gson.fromJson(_readJsonFromRequest(request), CommentRequestBody.class);
+		String requestBody = Constant._readJsonFromRequest(request);
+		CommentRequestBody crb = this.gson.fromJson(requestBody, CommentRequestBody.class);
 		if(user != null) {
 			commentService.insertComment(user.getId(), Integer.parseInt(postId), crb.getComment());
 		}
-	}
-	
-	private String _readJsonFromRequest(HttpServletRequest request) throws IOException {
-	    StringBuilder sb = new StringBuilder();
-	    try (BufferedReader br = request.getReader()) {
-	        String line;
-	        while ((line = br.readLine()) != null) {
-	            sb.append(line);
-	        }
-	    }
-	    return sb.toString();
 	}
 	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)

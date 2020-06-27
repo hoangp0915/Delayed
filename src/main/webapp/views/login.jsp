@@ -9,13 +9,17 @@
 				<a href="#" class="social"><i class="fa fa-google-plus"
 					style="color: #d6492f;" aria-hidden="true"></i></a>
 			</div>
-			<span>or use your email for registration</span> 
+			<span>or use your email for registration</span>
 			<c:if test="${alert == 'fail'}">
-				<div class="alert alert-danger">${message}</div>
+				<div class="alert alert-error w-100 text-left">
+					<i class="alert-icon fa fa-times-circle" aria-hidden="true"></i> <span
+						class="alert-message">${message}</span>
+				</div>
 			</c:if>
-			<input type="text"
-				placeholder="Username" name="username"/> <input type="email" placeholder="Email" name="email"/>
-			<input type="password" placeholder="Password" id="passwordRegis" name="password"/>
+			<input type="text" placeholder="Username" name="username" /> <input
+				type="email" placeholder="Email" name="email" /> <input
+				type="password" placeholder="Password" id="passwordRegis"
+				name="password" />
 			<button style="margin-top: 10px;">Đăng ký</button>
 		</form>
 	</div>
@@ -33,10 +37,16 @@
 			</div>
 			<span>or use your account</span>
 			<c:if test="${alert == 'invalid'}">
-				<div class="alert alert-danger">Sai tài khoản hoặc mật khẩu</div>
+				<div class="alert alert-error w-100 text-left">
+					<i class="alert-icon fa fa-times-circle" aria-hidden="true"></i> <span
+						class="alert-message">Sai tài khoản hoặc mật khẩu</span>
+				</div>
 			</c:if>
 			<c:if test="${alert == 'success'}">
-				<div class="alert alert-success">${message}</div>
+				<div class="alert alert-success w-100 text-left">
+					<i class="alert-icon fa fa-check-circle" aria-hidden="true"></i> <span
+						class="alert-message">${message}</span>
+				</div>
 			</c:if>
 			<input type="text" placeholder="Username" name="username" /> <input
 				type="password" placeholder="Password" name="password" /> <a

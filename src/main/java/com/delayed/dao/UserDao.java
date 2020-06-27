@@ -19,4 +19,6 @@ public interface UserDao {
 	RoleModel getRoleById(Integer id);
 	
 	void deletUserById(Integer id);
+	
+	void updateProfile(UserModel user);
 }
